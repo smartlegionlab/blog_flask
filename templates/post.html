@@ -1,7 +1,23 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% block title %}Create a post{% endblock %}
 
 {% block content %}
-    <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
-    <span class="badge badge-primary">{{ post['created'] }}</span>
-    <p>{{ post['content'] }}</p>
+    <h1 class="text-center display-4">Create a post</h1>
+    <hr>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.content.label(class="form-label") }}
+            {{ form.content(class="form-control", rows=5) }}
+        </div>
+        <div class="mb-3 btn-group" role="group">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to posts</a>
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
 {% endblock %}
